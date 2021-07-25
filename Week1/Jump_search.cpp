@@ -1,30 +1,29 @@
+/* For an array arr[] of size n and block (to be jumped) size m, search at the indexes arr[0], arr[m], arr[2m].....arr[km]
+and so on. Once the interval (arr[km] < key < arr[ (k+1)m ]) is found, perform a linear search operation from the
+index km to find the element key */
+
 #include<iostream>
+#include<cmath>
 using namespace std;
 
-int Jump_search(int arr[], int n, int s, int *comp)
+int Jump_search(int arr[], int n, int s, int &comp)
 {
     int l = 0, r = 0, i = 1;
+    int jump = sqrt(n);
     while(r < n)
     {
-        (*comp)++;
+        comp++;
         if(arr[r] == s)
             return 1;
         else if(arr[r] > s)
             break;
-        else
-        {
-            l = r+1;
-            if(l >= n)
-                return -1;
-            i = i*2;
-            r = i;
-            if(r >= n)
-                r = n-1;
-        }
+        l = r+1;
+        r = r+jump;
     }
+    r = min(r, n);
     while(l<r)
     {
-        (*comp)++;
+        comp++;
         if(arr[l++] == s)
             return 1;
     }
@@ -33,8 +32,6 @@ int Jump_search(int arr[], int n, int s, int *comp)
 
 int main()
 {
-    freopen("Sorted_Input.txt", "r", stdin);
-    freopen("Jump_Output.txt", "w", stdout);
     int t;
     cin>>t;
     for(int i=0; i<t; i++)
@@ -47,7 +44,7 @@ int main()
             cin>>arr[j];
         cin>>s;
         int comp = 0;
-        int st = Jump_search(arr, n, s, &comp);
+        int st = Jump_search(arr, n, s, comp);
         if(st)
             cout<<"Present "<<comp<<"\n";
         else

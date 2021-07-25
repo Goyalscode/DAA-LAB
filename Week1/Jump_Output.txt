@@ -1,6 +1,6 @@
 Present 3
-Not Present 6
-Present 4
+Not Present 5
+Present 6
 Not Present 1
 Present 2
 Not Present 2

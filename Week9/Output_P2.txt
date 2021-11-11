@@ -1,0 +1,7 @@
+Maximum value : 22.33
+item-weight
+5-1
+6-3
+4-5
+1-6
+3-1
